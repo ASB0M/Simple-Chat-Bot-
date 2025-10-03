@@ -1,75 +1,90 @@
-IoBM Chatbot System 💬
-Project Overview
-This is a simple, socket-based TCP chatbot designed to answer frequently asked questions (FAQs) about the Institute of Business Management (IoBM).
+# 🤖 IoBM Knowledge Base Chatbot
 
-Academic Context
-Course: Introduction to Database Systems Lab
+## 🎓 Course Final Project: Intro to Database Systems Lab 🏆
 
-Purpose: This project was developed as a course requirement to demonstrate fundamental concepts of data retrieval, client-server communication, and basic database management via a flat-file knowledge base. The primary focus was on implementing the TCP network communication model between the server and the Tkinter GUI client.
+This project serves as the **final project** for the **"Intro to Database Systems Lab"** course. While the application's interface is a client-server chatbot, its core function is to demonstrate **data retrieval, parsing, and query handling**—fundamental skills for any database system. The chatbot acts as a front-end to a simple, text-based **Knowledge Base**, simulating the structure and data-lookup functionality of a live database system.
 
-The system consists of a Python TCP server that loads a static knowledge base (uni_info.txt) and a Python Tkinter-based GUI client for user interaction. The server uses basic keyword matching to parse user queries and retrieve pre-defined answers from the knowledge file.
+---
 
-Features
-Client-Server Architecture: Uses standard Python socket and threading modules for network communication.
+## 📄 Overview
 
-GUI Client: A user-friendly interface built with Tkinter for chat interaction.
+The IoBM Knowledge Base Chatbot is a simple, real-time client-server application built with Python. It allows a user to ask questions about the Institute of Business Management (IoBM).
 
-Static Knowledge Base: A text file (uni_info.txt) serves as the database for easy-to-update and manage knowledge in a keyword-answer format.
+The project is divided into two main components:
 
-Logo Integration: Displays the university logo in the client application (requires Pillow library).
+1.  **Server (`server.py`):** Handles network connections, **loads a structured knowledge base (data)** from `uni_info.txt`, and processes incoming queries by matching user input to keywords in the data, then returning the corresponding information.
+2.  **Client (`client.py`):** Provides a simple **Tkinter-based GUI** for the user to interact with the bot and displays responses in real-time.
 
-⚙️ Setup and Installation
-Prerequisites
-You need Python 3.x and the Pillow library installed to run this project. Pillow is necessary for the client to handle and display the iobm_logo.png.
+---
 
-Bash
+## ✨ Database / Data Handling Features
 
-pip install Pillow
-File Structure
-Ensure the following files are in the same directory:
+This project focuses on the following concepts relevant to an Introduction to Database Systems:
 
-/IoBM_Chatbot/
-├── client.py
-├── server.py
-├── uni_info.txt
-├── iobm_logo.png
-└── README.md (This file)
-▶️ How to Run
-The system is a classic client-server application and must be started in two steps:
+* **Knowledge Base Parsing:** The `server.py` implements a custom mechanism to parse structured data from the `uni_info.txt` file, simulating the reading and indexing of records from a table or document-based database.
+* **Keyword-Based Querying:** Queries are resolved using simple **string matching (simulating a `LIKE` or basic `WHERE` clause)** to demonstrate data lookup logic.
+* **Data Storage:** The `uni_info.txt` file serves as the **"database"**, storing various facts and information in a key-value format.
+* **Data Integrity (Simple):** The server's loading function attempts to structure and normalize the raw text data before it is made available for querying.
 
-Step 1: Start the Server (The "Database" Host)
-Open your terminal or command prompt and run the server file.
+---
 
-Bash
+## 🛠 Technologies Used
 
-python server.py
-You should see the message: Server listening on ('localhost', 8080)
+* **Core Language:** **Python 3.x**
+* **Networking:** Standard **`socket`** library for TCP/IP client-server communication.
+* **Concurrency:** **`threading`** library to allow the server to handle multiple clients and the client to continuously receive messages without freezing the GUI.
+* **Client GUI:** **`tkinter`** for the desktop application interface.
+* **Image Handling (Client):** **`Pillow (PIL)`** for displaying the IoBM logo.
+* **"Database":** **`uni_info.txt`** (a custom text-file knowledge base).
 
-Step 2: Start the Client (The GUI)
-Open a second terminal or command prompt and run the client file.
+---
 
-Bash
+## 🚀 Installation and Setup
 
-python client.py
-The graphical client window will appear. You can now type your queries (e.g., "what is the mission statement?", "tell me about the bba program") into the text box and press Enter or click Send.
+### Prerequisites
 
-🧠 Knowledge Base Structure
-The knowledge base, uni_info.txt, serves as the data source for the chatbot. It uses a simple format for keyword-answer mapping:
+* **Python 3.x** installed.
+* **Pillow** library for the client GUI:
+    ```bash
+    pip install Pillow
+    ```
 
-# [Optional Section Header]
-[keyword]: [Answer text begins here]
-[Continuation of answer text on the next line]
-To add new questions or answers, simply follow the keyword: answer structure.
+### Running the Application
 
-⚖️ Legal & Licensing
-Code License
-The source code for client.py and server.py is licensed under the MIT License.
+1.  **Clone or Download** the project files: `server.py`, `client.py`, and `uni_info.txt`.
+2.  Ensure the **logo file `iobm_logo.png`** is in the same directory as `client.py`.
 
-See the full LICENSE.txt (coming soon) file for details.
+3.  **Start the Server** (Must be done first):
+    Open a terminal/command prompt, navigate to the project directory, and run:
+    ```bash
+    python server.py
+    ```
+    *Output should show: `Server listening on ('localhost', 8080)`*
 
-⚠️ Intellectual Property Disclaimer
-This project is a non-commercial, educational demonstration.
+4.  **Start the Client** (You can run multiple clients):
+    Open a *second* terminal/command prompt, navigate to the project directory, and run:
+    ```bash
+    python client.py
+    ```
+    *The Tkinter GUI window will open, and the chat area should display: `Connected to the server.`*
 
-IoBM Logo (iobm_logo.png): The Institute of Business Management (IoBM) logo and any associated branding are the registered trademarks and copyrighted material of IoBM. Its use in this project is strictly for non-commercial, educational demonstration and does not imply endorsement or official affiliation. For any public or commercial use, formal permission must be obtained from the university.
+---
 
-University Data (uni_info.txt): The information in the knowledge base is a compilation of publicly available facts and/or fictional content used for testing the chatbot functionality. Always refer to the official IoBM website for accurate and up-to-date information.
+## 💡 Usage
+
+1.  In the Client window, type your query in the input box (e.g., "What is the mission statement?" or "What are the bba program specializations?").
+2.  Click **"Send"** or press **Enter**.
+3.  The server will check the message against the keywords in `uni_info.txt` and return the most relevant answer.
+
+---
+
+## 📂 Project Files
+
+| File Name | Description |
+| :--- | :--- |
+| **`server.py`** | The core application that loads the data, listens for client connections, and handles query processing and response logic. |
+| **`client.py`** | The GUI application that allows the user to send messages and displays the bot's responses. |
+| **`uni_info.txt`** | The text-based **Knowledge Base** (the "data layer") containing all the IoBM facts and information. |
+| `iobm_logo.png` | The image file used in the client GUI. |
+
+---
